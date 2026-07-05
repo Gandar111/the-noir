@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The Noir – ein exklusives Gourmetrestaurant in Berlin mit modernem, luxuriösem und immersivem Genuss-Erlebnis."
+    />
+    <meta name="theme-color" content="#060606" />
+    <meta property="og:title" content="The Noir | Gourmetrestaurant Berlin" />
+    <meta
+      property="og:description"
+      content="Ein elegantes, immersives Genuss-Erlebnis mit außergewöhnlicher Atmosphäre, exquisiten Speisen und exklusiver Reservierung."
+    />
+    <meta property="og:type" content="website" />
+    <title>The Noir | Gourmetrestaurant Berlin</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #060606;
+        --bg-soft: #0f0f0f;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel-strong: rgba(255, 255, 255, 0.1);
+        --text: #f7efe6;
+        --text-soft: #bba891;
+        --line: rgba(255, 255, 255, 0.16);
+        --accent: #c5a46b;
+        --accent-2: #8b6a42;
+        --accent-3: #e2c38d;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        --radius-xl: 2rem;
+        --radius-lg: 1.25rem;
+        --radius-sm: 0.75rem;
+        --max: 1280px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(197, 164, 107, 0.14), transparent 26%),
+          linear-gradient(135deg, #050505 0%, #0c0c0c 100%);
+        color: var(--text);
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button, input, textarea, select {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .cursor-glow {
+        position: fixed;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(197,164,107,0.16), transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: screen;
+        filter: blur(10px);
+        opacity: 0.7;
+      }
+
+      #progress {
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-3));
+        transform-origin: left;
+        transform: scaleX(0);
+        z-index: 60;
+      }
+
+      .loader {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background: #020202;
+        z-index: 90;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+      }
+
+      .loader.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .loader-card {
+        padding: 2rem 2.35rem;
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(24px);
+        box-shadow: var(--shadow);
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--accent-3);
+        font-size: 0.8rem;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        padding: 1rem 1.5rem;
+        background: rgba(6, 6, 6, 0.45);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .header-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        font-size: 0.74rem;
+      }
+
+      .brand-mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(197,164,107,0.4);
+        background: linear-gradient(135deg, rgba(197,164,107,0.25), rgba(255,255,255,0.03));
+        color: var(--accent-3);
+        box-shadow: inset 0 1px 20px rgba(197,164,107,0.18);
+      }
+
+      nav ul {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav a {
+        color: var(--text-soft);
+        font-size: 0.92rem;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover,
+      nav a.is-active {
+        color: var(--text);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        padding: 0.9rem 1.15rem;
+        border-radius: 999px;
+        border: 1px solid rgba(197,164,107,0.26);
+        background: linear-gradient(135deg, rgba(197,164,107,0.18), rgba(255,255,255,0.03));
+        color: var(--text);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.24);
+        backdrop-filter: blur(18px);
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 18px 45px rgba(0,0,0,0.34);
+        border-color: rgba(197,164,107,0.6);
+      }
+
+      .btn:hover::after { transform: translateX(100%); }
+
+      .btn-accent {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #060606;
+        font-weight: 700;
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+      }
+
+      section {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 5rem 1.5rem;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        align-items: end;
+        padding-top: 3rem;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(6,6,6,0.85) 0%, rgba(6,6,6,0.1) 46%, rgba(6,6,6,0.82) 100%),
+          url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80") center/cover;
+        border-radius: 0 0 2.2rem 2.2rem;
+        z-index: -2;
+        filter: saturate(0.92) contrast(1.03);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(6,6,6,0.2), rgba(6,6,6,0.7));
+        border-radius: 0 0 2.2rem 2.2rem;
+        z-index: -1;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.7fr;
+        gap: 2rem;
+        align-items: end;
+      }
+
+      .hero-copy {
+        max-width: 680px;
+        padding: 3rem 0 3.5rem;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.55rem 0.8rem;
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 999px;
+        color: var(--accent-3);
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        font-size: 0.74rem;
+        margin-bottom: 1.25rem;
+        backdrop-filter: blur(12px);
+      }
+
+      h1, h2, h3, h4 {
+        font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+        letter-spacing: 0.02em;
+        margin: 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 6vw, 5.15rem);
+        line-height: 0.95;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: clamp(1rem, 1.35vw, 1.15rem);
+        line-height: 1.8;
+        color: rgba(247,239,230,0.8);
+        max-width: 600px;
+        margin-bottom: 1.65rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        max-width: 600px;
+      }
+
+      .stat { 
+        padding: 1rem 1rem 1.2rem;
+        border: 1px solid rgba(255,255,255,0.13);
+        border-radius: var(--radius-lg);
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(18px);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.25rem;
+        color: var(--accent-3);
+        margin-bottom: 0.15rem;
+      }
+
+      .hero-card {
+        padding: 1.3rem;
+        border-radius: 1.75rem;
+        background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+        border: 1px solid rgba(255,255,255,0.16);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(24px);
+        transform: translateY(20px);
+      }
+
+      .hero-card h3 {
+        font-size: 1.15rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .hero-card p { color: rgba(247,239,230,0.7); margin: 0 0 1rem; line-height: 1.75; }
+
+      .hero-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+      .hero-card li { display: flex; justify-content: space-between; color: var(--text-soft); }
+      .hero-card .meta { color: var(--accent-3); }
+
+      .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(1.7rem, 2.6vw, 2.35rem);
+      }
+
+      .section-heading p {
+        max-width: 560px;
+        color: var(--text-soft);
+        line-height: 1.8;
+        margin: 0;
+      }
+
+      .grid-two {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 2rem;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
+        box-shadow: var(--shadow);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        backdrop-filter: blur(24px);
+      }
+
+      .panel-media {
+        position: relative;
+        min-height: 320px;
+      }
+
+      .panel-media img { height: 100%; object-fit: cover; }
+
+      .panel-content {
+        padding: 1.6rem;
+      }
+
+      .panel-content p { line-height: 1.8; color: rgba(247,239,230,0.74); }
+
+      .cards {
+        display: grid;
+        gap: 1.15rem;
+      }
+
+      .card {
+        padding: 1.3rem;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(255,255,255,0.1);
+        background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.035));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      }
+
+      .card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+      .card p { color: var(--text-soft); margin: 0; line-height: 1.75; }
+      .card .price { color: var(--accent-3); font-weight: 700; margin-top: 0.6rem; }
+
+      .bento {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1.2rem;
+      }
+
+      .bento-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-xl);
+        min-height: 340px;
+        border: 1px solid rgba(255,255,255,0.11);
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(24px);
+      }
+
+      .bento-card img { height: 100%; object-fit: cover; }
+
+      .bento-card .overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 0%, rgba(3,3,3,0.7) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding: 1.4rem;
+      }
+
+      .bento-card h3 { font-size: 1.35rem; margin-bottom: 0.45rem; }
+      .bento-card p { color: rgba(247,239,230,0.76); margin: 0; line-height: 1.6; }
+
+      .split-block {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .blockquote {
+        padding: 1.8rem;
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(197,164,107,0.24);
+        background: linear-gradient(145deg, rgba(197,164,107,0.12), rgba(255,255,255,0.03));
+        box-shadow: var(--shadow);
+      }
+
+      .blockquote p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        color: rgba(247,239,230,0.8);
+        margin: 0 0 1rem;
+      }
+
+      .quote-author { color: var(--accent-3); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.74rem; }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 1.15rem;
+      }
+
+      .gallery .panel { min-height: 280px; }
+      .gallery .panel:nth-child(2) { transform: translateY(30px); }
+
+      .timeline {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .timeline-item:last-child { border-bottom: none; }
+      .time-label {
+        color: var(--accent-3);
+        font-size: 0.85rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .timeline-item h3 { margin-bottom: 0.3rem; }
+      .timeline-item p { color: var(--text-soft); margin: 0; line-height: 1.7; }
+
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .review-card {
+        padding: 1.5rem;
+        border-radius: var(--radius-xl);
+        background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.028));
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .review-card p { line-height: 1.8; color: rgba(247,239,230,0.78); }
+      .stars { color: var(--accent-3); letter-spacing: 0.2em; margin-bottom: 0.8rem; }
+
+      .awards-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .award-card {
+        padding: 1.4rem;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .award-card strong { display: block; font-size: 1rem; margin-bottom: 0.35rem; }
+      .award-card span { color: var(--text-soft); font-size: 0.93rem; }
+
+      .reservation {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 1.4rem;
+      }
+
+      form {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      label { color: var(--text-soft); font-size: 0.94rem; }
+      input, select, textarea {
+        width: 100%;
+        padding: 0.95rem 1rem;
+        border-radius: 0.9rem;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+        outline: none;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        border-color: rgba(197,164,107,0.55);
+        box-shadow: 0 0 0 3px rgba(197,164,107,0.16);
+      }
+
+      .faq-list { display: grid; gap: 0.8rem; }
+      .faq-item {
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 1rem;
+        padding: 1rem 1.1rem;
+        background: rgba(255,255,255,0.04);
+      }
+
+      .faq-item summary { cursor: pointer; font-weight: 600; list-style: none; }
+      .faq-item p { margin: 0.65rem 0 0; color: var(--text-soft); line-height: 1.8; }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 1.2rem;
+      }
+
+      .map-card {
+        min-height: 320px;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .map-card iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        filter: grayscale(0.2) saturate(0.8) contrast(1.05);
+      }
+
+      footer {
+        padding: 2rem 1.5rem 3rem;
+        color: var(--text-soft);
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .grid-two,
+        .bento,
+        .split-block,
+        .gallery,
+        .reservation,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-card { transform: none; }
+        .gallery .panel:nth-child(2) { transform: none; }
+        .review-grid,
+        .awards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 760px) {
+        .site-header { padding: 0.9rem 1rem; }
+        .hero { min-height: auto; padding-top: 1.3rem; }
+        .hero::before { border-radius: 0 0 1.4rem 1.4rem; }
+        .hero::after { border-radius: 0 0 1.4rem 1.4rem; }
+        nav ul { display: none; }
+        .nav-actions .btn--ghost { display: none; }
+        .menu-toggle { display: grid; place-items: center; }
+        .header-inner { gap: 0.5rem; }
+        .hero-stats { grid-template-columns: 1fr; }
+        .review-grid,
+        .awards-grid { grid-template-columns: 1fr; }
+        .section-heading { flex-direction: column; align-items: start; }
+        .timeline-item { grid-template-columns: 1fr; gap: 0.3rem; }
+        section { padding: 4rem 1rem; }
+        .hero-copy { padding: 2rem 0 2rem; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div id="progress" aria-hidden="true"></div>
+    <div class="loader" id="loader">
+      <div class="loader-card">The Noir • Berlin</div>
+    </div>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="#top" class="brand" aria-label="The Noir Startseite">
+          <span class="brand-mark">N</span>
+          <span>The Noir</span>
+        </a>
+        <nav aria-label="Hauptnavigation">
+          <ul>
+            <li><a href="#story">Geschichte</a></li>
+            <li><a href="#dishes">Spezialitäten</a></li>
+            <li><a href="#menu">Menü</a></li>
+            <li><a href="#gallery">Galerie</a></li>
+            <li><a href="#reserve">Reservieren</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn--ghost" href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn btn--ghost" href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a class="btn btn--ghost" href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a>
+          <a class="btn btn--ghost" href="#reserve">Tisch buchen</a>
+          <button class="menu-toggle" type="button" aria-label="Menü öffnen">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy" data-reveal>
+            <div class="eyebrow">Berlin • Gourmetküche • Seit 2014</div>
+            <h1>Genuss im Schatten, serviert im Licht.</h1>
+            <p>
+              In einem Raum aus weichem Dunkel und goldener Wärme entsteht eine kulinarische Welt,
+              in der jedes Gericht wie ein Kapitel eines modernen Luxusromans wirkt.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-accent" href="#reserve">Jetzt reservieren</a>
+              <a class="btn" href="#menu">Speisekarte entdecken</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat">
+                <strong>2 Michelin</strong>
+                <span>Guide Empfehlungen</span>
+              </div>
+              <div class="stat">
+                <strong>18:00</strong>
+                <span>Letzte Reservation</span>
+              </div>
+              <div class="stat">
+                <strong>12</strong>
+                <span>Private Tische</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-card" data-reveal>
+            <h3>Heutige intime Atmosphäre</h3>
+            <p>
+              Ein Abend aus saisonalen Aromen, geschliffener Atmosphäre und präzise komponierten
+              Begleitungen – für Gäste, die das Außergewöhnliche suchen.
+            </p>
+            <ul>
+              <li><span>Chef-Degustation</span><span class="meta">€ 168</span></li>
+              <li><span>Weinbegleitung</span><span class="meta">€ 92</span></li>
+              <li><span>Privates Dinner</span><span class="meta">Auf Anfrage</span></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="story" data-reveal>
+        <div class="section-heading">
+          <h2>Ein Ort für jene, die nicht nur essen – sondern erinnern.</h2>
+          <p>
+            The Noir entstand aus der Idee, ein Restaurant zu schaffen, das sich wie ein stiller,
+            exquisiter Rückzugsort anfühlt – voller Wärme, Detail und zeitloser Eleganz.
+          </p>
+        </div>
+        <div class="grid-two">
+          <div class="panel">
+            <div class="panel-media">
+              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild aus dem öffentlichen Instagram-Account" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="eyebrow">Unsere Philosophie</div>
+              <h3>Weniger Lärm. Mehr Bedeutung.</h3>
+              <p>
+                Jeder Abend wird mit ruhiger Präzision gestaltet: aus saisonalen Produkten, außergewöhnlichen Aromen und einer visuellen Atmosphäre, die zwischen französischer Raffinesse und moderner Berlin-Ästhetik pendelt.
+              </p>
+              <div class="cards" style="margin-top: 1.2rem;">
+                <div class="card">
+                  <h3>Seasonal artistry</h3>
+                  <p>Jedes Gericht wird nach dem Rhythmus der Region und des Marktes komponiert.</p>
+                </div>
+                <div class="card">
+                  <h3>Quiet luxury</h3>
+                  <p>Atmosphäre, Service und Materialität sind bewusst reduziert, aber niemals banal.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="dishes" data-reveal>
+        <div class="section-heading">
+          <h2>Spezialitäten, komponiert wie eine private Vorstellung.</h2>
+          <p>Jede Kreation entsteht als kleine Aufführung – vom ersten Blick bis zur letzten Note am Gaumen.</p>
+        </div>
+        <div class="bento">
+          <div class="bento-card">
+            <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als visuelles Statement" loading="lazy" decoding="async" />
+            <div class="overlay">
+              <h3>Black Truffle Lobster</h3>
+              <p>Mit pikanter Hollandaise, Kartoffel-Texturen und geröstetem Meerrettich.</p>
+            </div>
+          </div>
+          <div class="cards">
+            <div class="card">
+              <h3>Amber Wagyu</h3>
+              <p>In schwarzem Koriander, geröstetem Knoblauch und einem tragenden Jus aus Wildfleisch.</p>
+              <div class="price">€ 78</div>
+            </div>
+            <div class="card">
+              <h3>Garden of Moss</h3>
+              <p>Ein saisonales Gemüse-Menü mit gereiftem Noisette, Kräuterbutter und dunklem Honig.</p>
+              <div class="price">€ 44</div>
+            </div>
+            <div class="card">
+              <h3>Velvet Pear Tart</h3>
+              <p>Mit Tonkabohne, Schokoladenbutter und warmem Champagner-Glasur.</p>
+              <div class="price">€ 24</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" data-reveal>
+        <div class="section-heading">
+          <h2>Eine Speisekarte, die wie ein kleines Werk gelesen wird.</h2>
+          <p>Das Menü ist bewusst reduziert und in drei Ebenen angelegt – klar, präzise und voller Überraschung.</p>
+        </div>
+        <div class="split-block">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="eyebrow">Chef-Degustation</div>
+              <h3>6 Gänge • 168 €</h3>
+              <p>
+                Ein kuratiertes Menü aus dem Herzen des Hauses: von rauchigen Vorspeisen über scharfe, elegant balancierte Hauptgänge bis hin zu delicatessen Desserts.
+              </p>
+              <div class="cards" style="margin-top: 1rem;">
+                <div class="card">
+                  <h3>Gang I</h3>
+                  <p>Mais, Kaviar, zarter Sauerrahm und schwarze Essignote.</p>
+                </div>
+                <div class="card">
+                  <h3>Gang II</h3>
+                  <p>Hummer, trüffelige Texturen und feinste Citrus.</p>
+                </div>
+                <div class="card">
+                  <h3>Gang VI</h3>
+                  <p>Kaffee, dunkle Schokolade und verbrannte Mandeln.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="blockquote">
+            <p>“Wir bereiten jeden Teller so, als wäre er die letzte Note einer Sonate: zurückhaltend, präzise und unvergesslich.”</p>
+            <div class="quote-author">— Chef de Cuisine, The Noir</div>
+          </div>
+        </div>
+      </section>
+
+      <section data-reveal>
+        <div class="section-heading">
+          <h2>Chef’s Recommendation</h2>
+          <p>Der Abend wird oft von einer einzigen Kreation geprägt – die wir mit besonderer Sorgfalt servieren.</p>
+        </div>
+        <div class="grid-two">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="eyebrow">Heutige Spezialität</div>
+              <h3>Grillierte Jakobsmuscheln • Fermentierte Pflaume • Rauch</h3>
+              <p>
+                Sechs Minuten in einem offenen Feuer, dann auf einem Alltagsbrot aus Buchenholz. Die Frische des Meeres trifft auf die Tiefe von fermentierter Pflaume und das rauchige Herz der Küche.
+              </p>
+              <div class="cards" style="margin-top: 1rem;">
+                <div class="card">
+                  <h3>Begleitung</h3>
+                  <p>Sommerlicher Riesling aus der Pfalz mit mineralischer Struktur.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-media">
+              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild aus dem öffentlichen Instagram-Account" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" data-reveal>
+        <div class="section-heading">
+          <h2>Ein Raum, der sich in Bildern nicht erschöpft.</h2>
+          <p>Zwischen Schatten, Licht und Spiegelung entsteht ein Ambiente, das sich im Gedächtnis wie ein Film ablagert.</p>
+        </div>
+        <div class="gallery">
+          <div class="panel">
+            <div class="panel-media">
+              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als Hintergrundbild" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-media">
+              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als atmosphärische Visual" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-reveal>
+        <div class="section-heading">
+          <h2>Ambiente, das sich spüren lässt.</h2>
+          <p>Unsere Räume werden mit ruhiger Architektur, sanftem Licht und tiefen Materialien gestaltet.</p>
+        </div>
+        <div class="grid-two">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time-label">18:30</div>
+                  <div>
+                    <h3>Das erste Licht</h3>
+                    <p>Die Lampen werden nach dem Sonnenuntergang fein eingestellt – warm, erdig und gerade genug.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time-label">20:00</div>
+                  <div>
+                    <h3>Die Küche öffnet sich</h3>
+                    <p>Die Räume füllen sich mit dem Duft von Holz, Salz, Citrus und glühenden Gewürzen.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time-label">23:00</div>
+                  <div>
+                    <h3>Der letzte Toast</h3>
+                    <p>Der Raum wird stiller, die Atmosphäre intimer und die Erinnerungen länger.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-media">
+              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als Abschlussbild" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-reveal>
+        <div class="section-heading">
+          <h2>Weine & Getränke, kuratiert wie ein persönliches Archiv.</h2>
+          <p>Vom alten Champagner bis zu den seltenen Cuvées – jede Flasche wird als Gegenspieler der Küche gewählt.</p>
+        </div>
+        <div class="grid-two">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="cards">
+                <div class="card">
+                  <h3>Champagne House</h3>
+                  <p>Vintage-Selection mit silbernen Schlieren, feinster Mineralität und ruhiger Kraft.</p>
+                </div>
+                <div class="card">
+                  <h3>Cellar Reserve</h3>
+                  <p>Raritäten aus Burgund, Bordeaux und dem Süden – jeweils mit einem besonderen Moment.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="cards">
+                <div class="card">
+                  <h3>Signature Cocktails</h3>
+                  <p>Aus schwarzem Tee, Citrus, Bitter und trockenem Holz – zum Nachklang des Essens.</p>
+                </div>
+                <div class="card">
+                  <h3>After Dinner</h3>
+                  <p>Seren, Brandy und kleine, exquisite Destillate für die letzte Stunde des Abends.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-reveal>
+        <div class="section-heading">
+          <h2>Die Menschen hinter der Erfahrung.</h2>
+          <p>Ein Team aus Disziplin, Stil und Leidenschaft, das jeden Abend mit Ruhe und Präzision gestaltet.</p>
+        </div>
+        <div class="review-grid">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <h3>Elena Voss</h3>
+            <p>Restaurant Director – Für jeden Gast wird ein individueller Rhythmus geschaffen.</p>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <h3>Julian Berg</h3>
+            <p>Sommelier – Wein, Service und Timing sind immer aufeinander abgestimmt.</p>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <h3>Mina Sol</h3>
+            <p>Chef de Pass – Jeder Bissen trägt die Konsequenz einer langen, sorgfältigen Tradition.</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-reveal>
+        <div class="section-heading">
+          <h2>Gäste, Auszeichnungen und stille Anerkennung.</h2>
+          <p>Das Haus ist in kurzer Zeit zu einem Ort geworden, den Menschen nicht nur besuchen, sondern empfehlen.</p>
+        </div>
+        <div class="awards-grid">
+          <div class="award-card"><strong>Michelin Guide</strong><span>Empfohlen</span></div>
+          <div class="award-card"><strong>Gault&Millau</strong><span>16/20</span></div>
+          <div class="award-card"><strong>CSS Design</strong><span>Ehrenvolle Erwähnung</span></div>
+          <div class="award-card"><strong>Forbes</strong><span>Beste neue Tafel</span></div>
+        </div>
+      </section>
+
+      <section id="reserve" data-reveal>
+        <div class="section-heading">
+          <h2>Reservieren Sie Ihren Abend.</h2>
+          <p>Bitte teilen Sie uns Datum, Gästezahl und Vorlieben mit – wir gestalten den Abend auf Sie hin.</p>
+        </div>
+        <div class="reservation">
+          <div class="panel">
+            <div class="panel-content">
+              <form>
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Ihr Name" />
+                </div>
+                <div class="field">
+                  <label for="date">Datum</label>
+                  <input id="date" name="date" type="date" />
+                </div>
+                <div class="field">
+                  <label for="guests">Gäste</label>
+                  <select id="guests" name="guests">
+                    <option>2 Personen</option>
+                    <option>4 Personen</option>
+                    <option>6 Personen</option>
+                    <option>8+ Personen</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="notes">Besonderes</label>
+                  <textarea id="notes" name="notes" rows="4" placeholder="Hochzeit, Geburtstag oder besondere Wünsche..."></textarea>
+                </div>
+                <button class="btn btn-accent" type="submit">Anfrage senden</button>
+              </form>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="eyebrow">Besuchen Sie uns</div>
+              <h3>The Noir • Berlin</h3>
+              <p>Am Waldemarstraße 14, 10178 Berlin<br />Telefon: +49 30 555 49 14<br />E-Mail: reservations@thenoir.berlin</p>
+              <div class="cards" style="margin-top: 1rem;">
+                <div class="card">
+                  <h3>Öffnungszeiten</h3>
+                  <p>Di–Sa · 18:00 bis 00:30<br />Sonntag · geschlossen</p>
+                </div>
+                <div class="card">
+                  <h3>Folgen Sie uns</h3>
+                  <p><a href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer">Instagram</a><br /><a href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer">TikTok</a><br /><a href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-reveal>
+        <div class="section-heading">
+          <h2>Häufige Fragen</h2>
+          <p>Einige Antworten, die den Abend vorbereiten helfen.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Gibt es ein Dresscode?</summary>
+            <p>Wir begrüßen elegante Abendgarderobe. Jackett oder Cocktailkleidung sind willkommen.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Kann ich die Speisekarte anpassen?</summary>
+            <p>Ja, wir berücksichtigen Allergien, besondere Wünsche und individuelle Präferenzen bei der Planung Ihres Menüs.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Gibt es eine private Dining-Option?</summary>
+            <p>Ja, unsere privaten Räume sind auf Anfrage buchbar und werden individuell für Dinner, Events und Anlässe gestaltet.</p>
+          </details>
+        </div>
+      </section>
+
+      <section data-reveal>
+        <div class="contact-grid">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="eyebrow">Kontakt</div>
+              <h3>Ein Abend, der sich lohnt.</h3>
+              <p>Für Reservierungen, private Dinner oder Anfragen an das Team schreiben Sie uns gern direkt.</p>
+              <div class="cards" style="margin-top: 1rem;">
+                <div class="card">
+                  <h3>Reservierungsbüro</h3>
+                  <p>reservations@thenoir.berlin<br />+49 30 555 49 14</p>
+                </div>
+                <div class="card">
+                  <h3>Social & Presse</h3>
+                  <p><a href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer">Instagram</a><br /><a href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer">TikTok</a><br /><a href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="map-card">
+            <iframe title="Google Maps Standort The Noir" src="https://www.google.com/maps?q=52.5468804,13.3576808&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 The Noir • Berlin • Gourmetküche • Geformt für jene, die stille Exzellenz erkennen.</p>
+    </footer>
+
+    <script>
+      const loader = document.getElementById('loader');
+      window.addEventListener('load', () => {
+        setTimeout(() => loader.classList.add('is-hidden'), 500);
+      });
+
+      const progress = document.getElementById('progress');
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = height > 0 ? scrollTop / height : 0;
+        progress.style.transform = `scaleX(${ratio})`;
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      const revealItems = document.querySelectorAll('[data-reveal]');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.18 });
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      const cursorGlow = document.querySelector('.cursor-glow');
+      window.addEventListener('pointermove', (event) => {
+        cursorGlow.animate(
+          { left: `${event.clientX}px`, top: `${event.clientY}px` },
+          { duration: 800, fill: 'forwards' }
+        );
+      });
+
+      document.querySelectorAll('.btn, .card, .panel, .bento-card').forEach((element) => {
+        element.addEventListener('pointermove', (event) => {
+          const rect = element.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          element.style.setProperty('--mx', `${x}px`);
+          element.style.setProperty('--my', `${y}px`);
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', () => {
+          document.querySelectorAll('nav a').forEach((item) => item.classList.remove('is-active'));
+          link.classList.add('is-active');
+        });
+      });
+
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      menuToggle?.addEventListener('click', () => {
+        nav.classList.toggle('is-open');
+      });
+    </script>
+  </body>
+</html>
