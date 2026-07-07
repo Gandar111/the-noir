@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="The Noir – ein exklusives Gourmetrestaurant in Berlin mit modernem, luxuriösem und immersivem Genuss-Erlebnis."
+      content="The Noir – Café · Restaurant · Bar in Berlin-Wedding. Asian Fusion Cuisine trifft türkische Spezialitäten, Frühstück, Business Lunch und Cocktails."
     />
     <meta name="theme-color" content="#060606" />
-    <meta property="og:title" content="The Noir | Gourmetrestaurant Berlin" />
+    <meta property="og:title" content="The Noir | Café · Restaurant · Bar Berlin" />
     <meta
       property="og:description"
-      content="Ein elegantes, immersives Genuss-Erlebnis mit außergewöhnlicher Atmosphäre, exquisiten Speisen und exklusiver Reservierung."
+      content="Asian Fusion Cuisine und türkische Spezialitäten am Leopoldplatz: Frühstück, Business Lunch, Bowls und Cocktails in warmer, dunkler Atmosphäre."
     />
     <meta property="og:type" content="website" />
-    <title>The Noir | Gourmetrestaurant Berlin</title>
+    <title>The Noir | Café · Restaurant · Bar Berlin</title>
     <style>
       :root {
         color-scheme: dark;
@@ -245,6 +245,36 @@
         color: var(--text);
       }
 
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 50%;
+      }
+
+      .icon-btn svg {
+        width: 20px;
+        height: 20px;
+        color: #ffffff;
+      }
+
+      .social-inline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text);
+      }
+
+      .social-inline svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        color: #ffffff;
+      }
+
       main {
         position: relative;
         z-index: 1;
@@ -270,7 +300,7 @@
         inset: 0;
         background:
           linear-gradient(90deg, rgba(6,6,6,0.85) 0%, rgba(6,6,6,0.1) 46%, rgba(6,6,6,0.82) 100%),
-          url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80") center/cover;
+          url("images/bar-counter-spread.jpg") center/cover;
         border-radius: 0 0 2.2rem 2.2rem;
         z-index: -2;
         filter: saturate(0.92) contrast(1.03);
@@ -418,6 +448,7 @@
 
       .panel-media {
         position: relative;
+        height: 100%;
         min-height: 320px;
       }
 
@@ -501,14 +532,33 @@
 
       .quote-author { color: var(--accent-3); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.74rem; }
 
-      .gallery {
-        display: grid;
-        grid-template-columns: 0.95fr 1.05fr;
-        gap: 1.15rem;
+      .photo-grid {
+        column-count: 3;
+        column-gap: 1.15rem;
       }
 
-      .gallery .panel { min-height: 280px; }
-      .gallery .panel:nth-child(2) { transform: translateY(30px); }
+      .photo-grid figure {
+        margin: 0 0 1.15rem;
+        break-inside: avoid;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: var(--shadow);
+        background: rgba(255,255,255,0.04);
+      }
+
+      .photo-grid img {
+        width: 100%;
+        display: block;
+      }
+
+      @media (max-width: 980px) {
+        .photo-grid { column-count: 2; }
+      }
+
+      @media (max-width: 600px) {
+        .photo-grid { column-count: 1; }
+      }
 
       .timeline {
         display: grid;
@@ -653,14 +703,12 @@
         .grid-two,
         .bento,
         .split-block,
-        .gallery,
         .reservation,
         .contact-grid {
           grid-template-columns: 1fr;
         }
 
         .hero-card { transform: none; }
-        .gallery .panel:nth-child(2) { transform: none; }
         .review-grid,
         .awards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
@@ -670,7 +718,23 @@
         .hero { min-height: auto; padding-top: 1.3rem; }
         .hero::before { border-radius: 0 0 1.4rem 1.4rem; }
         .hero::after { border-radius: 0 0 1.4rem 1.4rem; }
+        nav { position: relative; }
         nav ul { display: none; }
+        nav.is-open ul {
+          display: flex;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 0.5rem 1rem 1rem;
+          background: rgba(6, 6, 6, 0.92);
+          backdrop-filter: blur(24px);
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        nav.is-open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .nav-actions .btn--ghost { display: none; }
         .menu-toggle { display: grid; place-items: center; }
         .header-inner { gap: 0.5rem; }
@@ -712,8 +776,12 @@
           </ul>
         </nav>
         <div class="nav-actions">
-          <a class="btn btn--ghost" href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a class="btn btn--ghost" href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a class="btn btn--ghost icon-btn" href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer" aria-label="The Noir auf Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig-grad-btn" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDC80"/><stop offset="25%" stop-color="#FCAF45"/><stop offset="50%" stop-color="#F56040"/><stop offset="75%" stop-color="#C13584"/><stop offset="100%" stop-color="#5851DB"/></linearGradient></defs><path fill="url(#ig-grad-btn)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 1.837c-3.145 0-3.508.012-4.744.068-2.667.122-3.912 1.387-4.034 4.034-.056 1.235-.067 1.598-.067 4.744 0 3.146.012 3.51.067 4.745.122 2.645 1.365 3.912 4.034 4.034 1.236.056 1.599.068 4.744.068 3.146 0 3.51-.012 4.745-.068 2.664-.122 3.912-1.393 4.034-4.034.056-1.235.068-1.599.068-4.745 0-3.146-.012-3.509-.068-4.744-.122-2.65-1.372-3.912-4.034-4.034-1.236-.056-1.599-.068-4.745-.068zm0 5.393a4.607 4.607 0 1 1 0 9.214 4.607 4.607 0 0 1 0-9.214zm0 1.837a2.77 2.77 0 1 0 0 5.54 2.77 2.77 0 0 0 0-5.54zm4.807-3.31a1.077 1.077 0 1 1 0 2.155 1.077 1.077 0 0 1 0-2.155z"/></svg>
+          </a>
+          <a class="btn btn--ghost icon-btn" href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer" aria-label="The Noir auf TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25F4EE" transform="translate(-0.9,0.45)" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/><path fill="#FE2C55" transform="translate(0.9,-0.45)" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/><path fill="#010101" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/></svg>
+          </a>
           <a class="btn btn--ghost" href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a>
           <a class="btn btn--ghost" href="#reserve">Tisch buchen</a>
           <button class="menu-toggle" type="button" aria-label="Menü öffnen">☰</button>
@@ -725,11 +793,11 @@
       <section class="hero">
         <div class="hero-grid">
           <div class="hero-copy" data-reveal>
-            <div class="eyebrow">Berlin • Gourmetküche • Seit 2014</div>
-            <h1>Genuss im Schatten, serviert im Licht.</h1>
+            <div class="eyebrow">Berlin-Wedding • Café · Restaurant · Bar</div>
+            <h1>Asian Fusion trifft türkische Gastfreundschaft.</h1>
             <p>
-              In einem Raum aus weichem Dunkel und goldener Wärme entsteht eine kulinarische Welt,
-              in der jedes Gericht wie ein Kapitel eines modernen Luxusromans wirkt.
+              In einem Raum aus weichem Dunkel und goldener Wärme servieren wir Frühstück, Business Lunch
+              und Cocktails – frisch, ehrlich und mit Liebe zum Detail, mitten am Leopoldplatz.
             </p>
             <div class="hero-actions">
               <a class="btn btn-accent" href="#reserve">Jetzt reservieren</a>
@@ -737,30 +805,30 @@
             </div>
             <div class="hero-stats">
               <div class="stat">
-                <strong>2 Michelin</strong>
-                <span>Guide Empfehlungen</span>
+                <strong>09–23</strong>
+                <span>Täglich geöffnet</span>
               </div>
               <div class="stat">
-                <strong>18:00</strong>
-                <span>Letzte Reservation</span>
+                <strong>ab € 9,99</strong>
+                <span>Business Lunch</span>
               </div>
               <div class="stat">
-                <strong>12</strong>
-                <span>Private Tische</span>
+                <strong>Fusion</strong>
+                <span>Asian & Turkish</span>
               </div>
             </div>
           </div>
 
           <aside class="hero-card" data-reveal>
-            <h3>Heutige intime Atmosphäre</h3>
+            <h3>Gerade beliebt</h3>
             <p>
-              Ein Abend aus saisonalen Aromen, geschliffener Atmosphäre und präzise komponierten
-              Begleitungen – für Gäste, die das Außergewöhnliche suchen.
+              Frisch, schnell, leicht – perfekt für die Mittagspause oder einen entspannten Abend
+              mit Freunden.
             </p>
             <ul>
-              <li><span>Chef-Degustation</span><span class="meta">€ 168</span></li>
-              <li><span>Weinbegleitung</span><span class="meta">€ 92</span></li>
-              <li><span>Privates Dinner</span><span class="meta">Auf Anfrage</span></li>
+              <li><span>Business Lunch</span><span class="meta">ab € 9,99</span></li>
+              <li><span>Mango Avocado Bowl</span><span class="meta">€ 9,99</span></li>
+              <li><span>Turkish Brunch Tower</span><span class="meta">€ 35,90</span></li>
             </ul>
           </aside>
         </div>
@@ -768,33 +836,35 @@
 
       <section id="story" data-reveal>
         <div class="section-heading">
-          <h2>Ein Ort für jene, die nicht nur essen – sondern erinnern.</h2>
+          <h2>Ein Ort für jene, die Küchen und Kulturen verbinden.</h2>
           <p>
-            The Noir entstand aus der Idee, ein Restaurant zu schaffen, das sich wie ein stiller,
-            exquisiter Rückzugsort anfühlt – voller Wärme, Detail und zeitloser Eleganz.
+            The Noir entstand aus der Idee, Asian Fusion Cuisine und türkische Gastfreundschaft
+            unter einem Dach zusammenzubringen – entspannt am Tag, warm und stimmungsvoll am Abend.
           </p>
         </div>
         <div class="grid-two">
           <div class="panel">
             <div class="panel-media">
-              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild aus dem öffentlichen Instagram-Account" loading="lazy" decoding="async" />
+              <img src="images/toast-trio-spread.jpg" alt="Frühstückstisch bei The Noir mit drei Toasts und Smoothies" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="panel">
             <div class="panel-content">
               <div class="eyebrow">Unsere Philosophie</div>
-              <h3>Weniger Lärm. Mehr Bedeutung.</h3>
+              <h3>Frisch. Schnell. Leicht.</h3>
               <p>
-                Jeder Abend wird mit ruhiger Präzision gestaltet: aus saisonalen Produkten, außergewöhnlichen Aromen und einer visuellen Atmosphäre, die zwischen französischer Raffinesse und moderner Berlin-Ästhetik pendelt.
+                Ob Frühstück, Business Lunch oder Cocktailabend: Wir kombinieren frische, hausgemachte
+                Küche aus asiatischen und türkischen Einflüssen mit einer warmen, dunklen Atmosphäre
+                mitten in Berlin-Wedding.
               </p>
               <div class="cards" style="margin-top: 1.2rem;">
                 <div class="card">
-                  <h3>Seasonal artistry</h3>
-                  <p>Jedes Gericht wird nach dem Rhythmus der Region und des Marktes komponiert.</p>
+                  <h3>Asian Fusion</h3>
+                  <p>Pho, Bowls und Summer Rolls, komponiert aus frischen, saisonalen Zutaten.</p>
                 </div>
                 <div class="card">
-                  <h3>Quiet luxury</h3>
-                  <p>Atmosphäre, Service und Materialität sind bewusst reduziert, aber niemals banal.</p>
+                  <h3>Turkish Specialties</h3>
+                  <p>Türkisches Frühstück, Tee aus dem Samowar und herzhafte Klassiker.</p>
                 </div>
               </div>
             </div>
@@ -804,32 +874,37 @@
 
       <section id="dishes" data-reveal>
         <div class="section-heading">
-          <h2>Spezialitäten, komponiert wie eine private Vorstellung.</h2>
-          <p>Jede Kreation entsteht als kleine Aufführung – vom ersten Blick bis zur letzten Note am Gaumen.</p>
+          <h2>Spezialitäten, frisch und ehrlich zubereitet.</h2>
+          <p>Von Avocado-Toast bis Pho Bo – jedes Gericht entsteht aus frischen, saisonalen Zutaten.</p>
         </div>
         <div class="bento">
           <div class="bento-card">
-            <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als visuelles Statement" loading="lazy" decoding="async" />
+            <img src="images/avocado-toast-salmon.jpg" alt="Avocado-Toast mit Lachs und pochiertem Ei bei The Noir" loading="lazy" decoding="async" />
             <div class="overlay">
-              <h3>Black Truffle Lobster</h3>
-              <p>Mit pikanter Hollandaise, Kartoffel-Texturen und geröstetem Meerrettich.</p>
+              <h3>Avocado & Lachs Toast</h3>
+              <p>Geräucherter Lachs, pochiertes Ei und cremige Avocado auf geröstetem Sauerteigbrot.</p>
             </div>
           </div>
           <div class="cards">
             <div class="card">
-              <h3>Amber Wagyu</h3>
-              <p>In schwarzem Koriander, geröstetem Knoblauch und einem tragenden Jus aus Wildfleisch.</p>
-              <div class="price">€ 78</div>
+              <h3>Pho Bo</h3>
+              <p>Vietnamesische Rindfleischsuppe, auch als Pho Chay (vegan) erhältlich.</p>
+              <div class="price">ab € 9,99</div>
             </div>
             <div class="card">
-              <h3>Garden of Moss</h3>
-              <p>Ein saisonales Gemüse-Menü mit gereiftem Noisette, Kräuterbutter und dunklem Honig.</p>
-              <div class="price">€ 44</div>
+              <h3>Mango Avocado Salad Bowl</h3>
+              <p>Mango, Avocado, Wildkräuter, Edamame, Gurke, Karotten, Röstzwiebeln, Hausdressing.</p>
+              <div class="price">€ 9,99</div>
             </div>
             <div class="card">
-              <h3>Velvet Pear Tart</h3>
-              <p>Mit Tonkabohne, Schokoladenbutter und warmem Champagner-Glasur.</p>
-              <div class="price">€ 24</div>
+              <h3>Summer Rolls</h3>
+              <p>Frische Reispapierrollen gefüllt mit Garnelen, Reisnudeln, Kräutern und Erdnüssen.</p>
+              <div class="price">€ 6,90</div>
+            </div>
+            <div class="card">
+              <h3>Chicken Fire Bites</h3>
+              <p>Signature: 3 knusprige Hähnchenschenkel mit hausgemachter Glasur und schwarzem Sesam.</p>
+              <div class="price">€ 6,90</div>
             </div>
           </div>
         </div>
@@ -837,64 +912,71 @@
 
       <section id="menu" data-reveal>
         <div class="section-heading">
-          <h2>Eine Speisekarte, die wie ein kleines Werk gelesen wird.</h2>
-          <p>Das Menü ist bewusst reduziert und in drei Ebenen angelegt – klar, präzise und voller Überraschung.</p>
+          <h2>Business Lunch, gemacht für deine Mittagspause.</h2>
+          <p>Montag bis Freitag von 11:30 bis 15:00 Uhr – warme Klassiker und leichte Sommer-Bowls, schnell serviert.</p>
         </div>
         <div class="split-block">
           <div class="panel">
             <div class="panel-content">
-              <div class="eyebrow">Chef-Degustation</div>
-              <h3>6 Gänge • 168 €</h3>
+              <div class="eyebrow">Business Lunch</div>
+              <h3>Mo–Fr 11:30–15:00 • ab 9,99 €</h3>
               <p>
-                Ein kuratiertes Menü aus dem Herzen des Hauses: von rauchigen Vorspeisen über scharfe, elegant balancierte Hauptgänge bis hin zu delicatessen Desserts.
+                Frisch gekocht in 10–15 Minuten: warme Klassiker aus der asiatischen Küche und leichte
+                Sommer-Bowls, wahlweise mit Hähnchen, Garnelen oder Tofu.
               </p>
               <div class="cards" style="margin-top: 1rem;">
                 <div class="card">
-                  <h3>Gang I</h3>
-                  <p>Mais, Kaviar, zarter Sauerrahm und schwarze Essignote.</p>
+                  <h3>Warme Klassiker</h3>
+                  <p>Pho Bo, Pho Chay (vegan), gebratene Nudeln oder Reis, Frühlingsrollen.</p>
                 </div>
                 <div class="card">
-                  <h3>Gang II</h3>
-                  <p>Hummer, trüffelige Texturen und feinste Citrus.</p>
+                  <h3>Sommer-Bowls</h3>
+                  <p>Mango Avocado Salad Bowl und Black Rice Salad Bowl, je € 9,99.</p>
                 </div>
                 <div class="card">
-                  <h3>Gang VI</h3>
-                  <p>Kaffee, dunkle Schokolade und verbrannte Mandeln.</p>
+                  <h3>Toasts</h3>
+                  <p>Smashed Avocado Stulle € 10,90, Mushroom Melt Toast € 11,90.</p>
+                </div>
+                <div class="card">
+                  <h3>Extras</h3>
+                  <p>Softdrink 0,2 l + 2,00 €, Kaffee nach dem Essen + 1,50 €.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="blockquote">
-            <p>“Wir bereiten jeden Teller so, als wäre er die letzte Note einer Sonate: zurückhaltend, präzise und unvergesslich.”</p>
-            <div class="quote-author">— Chef de Cuisine, The Noir</div>
+            <p>"Frisch. Schnell. Leicht. Perfekt für deine Mittagspause."</p>
+            <div class="quote-author">— The Noir, Berlin</div>
           </div>
         </div>
       </section>
 
       <section data-reveal>
         <div class="section-heading">
-          <h2>Chef’s Recommendation</h2>
-          <p>Der Abend wird oft von einer einzigen Kreation geprägt – die wir mit besonderer Sorgfalt servieren.</p>
+          <h2>Noir Brunch Sofrası</h2>
+          <p>Unser Turkish Breakfast Tower wird oft zum Mittelpunkt des Tisches – mit besonderer Sorgfalt zusammengestellt.</p>
         </div>
         <div class="grid-two">
           <div class="panel">
             <div class="panel-content">
-              <div class="eyebrow">Heutige Spezialität</div>
-              <h3>Grillierte Jakobsmuscheln • Fermentierte Pflaume • Rauch</h3>
+              <div class="eyebrow">Für 2 Personen • € 35,90</div>
+              <h3>Breakfast Tower • Türkischer Tee</h3>
               <p>
-                Sechs Minuten in einem offenen Feuer, dann auf einem Alltagsbrot aus Buchenholz. Die Frische des Meeres trifft auf die Tiefe von fermentierter Pflaume und das rauchige Herz der Küche.
+                Drei Etagen voller Vielfalt: 6 Käsesorten, 6 Pastırma, 10 Sucuk, 2 Olivensorten und Butter,
+                dazu 2 Simit, 2 helle Brötchen, 2 Sigara Böreği und 2 Meze-Dips – abgerundet mit Obst,
+                Honig, Kaymak und Marmelade.
               </p>
               <div class="cards" style="margin-top: 1rem;">
                 <div class="card">
-                  <h3>Begleitung</h3>
-                  <p>Sommerlicher Riesling aus der Pfalz mit mineralischer Struktur.</p>
+                  <h3>Dazu serviert</h3>
+                  <p>Türkischer Tee, frisch aufgebrüht aus dem klassischen Samowar.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="panel">
             <div class="panel-media">
-              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild aus dem öffentlichen Instagram-Account" loading="lazy" decoding="async" />
+              <img src="images/turkish-tea-service.jpg" alt="Türkischer Tee wird bei The Noir aus dem Samowar serviert" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -902,51 +984,68 @@
 
       <section id="gallery" data-reveal>
         <div class="section-heading">
-          <h2>Ein Raum, der sich in Bildern nicht erschöpft.</h2>
-          <p>Zwischen Schatten, Licht und Spiegelung entsteht ein Ambiente, das sich im Gedächtnis wie ein Film ablagert.</p>
+          <h2>Ein Ort, der sich in Bildern nicht erschöpft.</h2>
+          <p>Zwischen Cocktailstunde und Frühstückstisch entsteht ein Ambiente, das man immer wieder erleben will.</p>
         </div>
-        <div class="gallery">
-          <div class="panel">
-            <div class="panel-media">
-              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als Hintergrundbild" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-media">
-              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als atmosphärische Visual" loading="lazy" decoding="async" />
-            </div>
-          </div>
+        <div class="photo-grid">
+          <figure><img src="images/storefront-exterior.jpg" alt="Eingang von The Noir am Leopoldplatz" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/dining-room-lights.jpg" alt="Gastraum von The Noir mit Pendelleuchten" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/terrace-outdoor.jpg" alt="Außenterrasse von The Noir mit Sonnenschirmen" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/velvet-booth-lamps.jpg" alt="Samt-Sitzecke mit Messingleuchten bei The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/rice-bowls-duo.webp" alt="Zwei asiatische Reisbowls bei The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/curry-chicken-bowl.jpg" alt="Knuspriges Hähnchen in Currysauce mit Reis" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/tom-kha-soup.jpg" alt="Tom Kha Suppe bei The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/pho-bowls-duo.jpg" alt="Zwei Pho-Suppen mit Stäbchen" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/bao-bun.jpg" alt="Bao Bun mit Hähnchen und Salat" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/tempura-vegetables.jpg" alt="Gemüse-Tempura mit Dip" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/summer-rolls-tray.jpg" alt="Frische Summer Rolls auf einer Servierplatte" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/tasting-platter.jpg" alt="Verkostungsplatte mit Spießen und Cocktails" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/toast-trio-spread.jpg" alt="Drei verschiedene Toasts mit Smoothies" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/french-toast-platter.jpg" alt="French Toast mit frischen Früchten" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/pancake-stack.jpg" alt="Pancake-Stack mit Beeren bei The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/crepe-cake.jpg" alt="Crêpe-Torte mit Beeren" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/cheesecake-trio.jpg" alt="Drei Cheesecake-Variationen mit Kaffee" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/smoothie-bowl-berry.jpg" alt="Beeren-Smoothie-Bowl mit Granola" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/yogurt-berry-bowl.jpg" alt="Joghurt-Bowl mit Beeren und Honig" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/berry-granola-bowl.jpg" alt="Fruchtige Granola-Bowl bei The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/latte-art-bar.jpg" alt="Kaffee mit Latte Art an der Bar von The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/iced-latte-basket.jpg" alt="Iced Latte mit frischem Brotkorb" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/iced-coffee.jpg" alt="Eiskaffee-Getränke bei The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/cocktails-duo-v2.jpg" alt="Zwei Signature Cocktails in Coupe-Gläsern" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/cocktail-rose.jpg" alt="Signature Cocktail mit Rosenblüte im Abendlicht" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/turkish-breakfast-spread.jpg" alt="Türkisches Frühstück, angerichtet auf dem Tisch bei The Noir" loading="lazy" decoding="async" /></figure>
+          <figure><img src="images/brunch-flatlay.jpg" alt="Brunch-Teller von oben fotografiert" loading="lazy" decoding="async" /></figure>
         </div>
       </section>
 
       <section data-reveal>
         <div class="section-heading">
-          <h2>Ambiente, das sich spüren lässt.</h2>
-          <p>Unsere Räume werden mit ruhiger Architektur, sanftem Licht und tiefen Materialien gestaltet.</p>
+          <h2>Ein Tag bei The Noir.</h2>
+          <p>Vom ersten Kaffee bis zum letzten Cocktail – unser Tag hat drei Gesichter.</p>
         </div>
         <div class="grid-two">
           <div class="panel">
             <div class="panel-content">
               <div class="timeline">
                 <div class="timeline-item">
-                  <div class="time-label">18:30</div>
+                  <div class="time-label">09:00</div>
                   <div>
-                    <h3>Das erste Licht</h3>
-                    <p>Die Lampen werden nach dem Sonnenuntergang fein eingestellt – warm, erdig und gerade genug.</p>
+                    <h3>Frühstück & Brunch</h3>
+                    <p>Türkisches Frühstück, Avocado-Toast und frisch gebrühter Tee zum Start in den Tag.</p>
                   </div>
                 </div>
                 <div class="timeline-item">
-                  <div class="time-label">20:00</div>
+                  <div class="time-label">11:30</div>
                   <div>
-                    <h3>Die Küche öffnet sich</h3>
-                    <p>Die Räume füllen sich mit dem Duft von Holz, Salz, Citrus und glühenden Gewürzen.</p>
+                    <h3>Business Lunch</h3>
+                    <p>Warme Klassiker und Sommer-Bowls, frisch gekocht in 10–15 Minuten.</p>
                   </div>
                 </div>
                 <div class="timeline-item">
-                  <div class="time-label">23:00</div>
+                  <div class="time-label">22:00</div>
                   <div>
                     <h3>Der letzte Toast</h3>
-                    <p>Der Raum wird stiller, die Atmosphäre intimer und die Erinnerungen länger.</p>
+                    <p>Signature Cocktails und ruhige Gespräche, bis der Abend ausklingt.</p>
                   </div>
                 </div>
               </div>
@@ -954,7 +1053,7 @@
           </div>
           <div class="panel">
             <div class="panel-media">
-              <img src="https://scontent-ber1-1.cdninstagram.com/v/t51.82787-19/714284207_18097781986897360_2542278774390004169_n.jpg?stp=dst-jpg_s100x100_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=bf7eb4&amp;efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&amp;_nc_ohc=e9T4UFsREU4Q7kNvwHcrULS&amp;_nc_oc=AdqL5msf7vHVThsc3wALZBo3BpHt_B9zpgTUwI3DaYI97ZugGTiCtr-rV8-ifxInWWo&amp;_nc_zt=24&amp;_nc_ht=scontent-ber1-1.cdninstagram.com&amp;_nc_gid=4AyUjPadCPlwDFJB5z1QQw&amp;_nc_ss=7060f&amp;oh=00_AQDATxwikQwu8fxOW1UvnoU7xqgq93tIouvZmhaj2Vlqmw&amp;oe=6A50412C" alt="The Noir Instagram-Profilbild als Abschlussbild" loading="lazy" decoding="async" />
+              <img src="images/dining-room-banquette.webp" alt="Gemütliche Sitzecke bei The Noir mit Samt-Sitzbank" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -962,20 +1061,20 @@
 
       <section data-reveal>
         <div class="section-heading">
-          <h2>Weine & Getränke, kuratiert wie ein persönliches Archiv.</h2>
-          <p>Vom alten Champagner bis zu den seltenen Cuvées – jede Flasche wird als Gegenspieler der Küche gewählt.</p>
+          <h2>Getränke & Eis, hausgemacht und frisch.</h2>
+          <p>Von türkischem Tee bis Signature Cocktails – jedes Getränk wird frisch für dich zubereitet.</p>
         </div>
         <div class="grid-two">
           <div class="panel">
             <div class="panel-content">
               <div class="cards">
                 <div class="card">
-                  <h3>Champagne House</h3>
-                  <p>Vintage-Selection mit silbernen Schlieren, feinster Mineralität und ruhiger Kraft.</p>
+                  <h3>Signature Cocktails</h3>
+                  <p>Summer in Berlin, Noir Colada, Passion Velvet, Blue Noir – ab € 7,80.</p>
                 </div>
                 <div class="card">
-                  <h3>Cellar Reserve</h3>
-                  <p>Raritäten aus Burgund, Bordeaux und dem Süden – jeweils mit einem besonderen Moment.</p>
+                  <h3>Türkischer Tee & Kaffee</h3>
+                  <p>Frisch aufgebrüht aus dem klassischen Samowar, dazu Espresso und Affogato.</p>
                 </div>
               </div>
             </div>
@@ -984,12 +1083,12 @@
             <div class="panel-content">
               <div class="cards">
                 <div class="card">
-                  <h3>Signature Cocktails</h3>
-                  <p>Aus schwarzem Tee, Citrus, Bitter und trockenem Holz – zum Nachklang des Essens.</p>
+                  <h3>Premium Ice Cream</h3>
+                  <p>Vanille, Black Sesame, Pistazie, Kokos, Mango, Cookies & Cream, Dark Chocolate.</p>
                 </div>
                 <div class="card">
-                  <h3>After Dinner</h3>
-                  <p>Seren, Brandy und kleine, exquisite Destillate für die letzte Stunde des Abends.</p>
+                  <h3>Berry & Mango Ice Cup</h3>
+                  <p>Vanilleeis mit frischen Beeren oder Mango, Minze und Passionsfrucht.</p>
                 </div>
               </div>
             </div>
@@ -999,38 +1098,35 @@
 
       <section data-reveal>
         <div class="section-heading">
-          <h2>Die Menschen hinter der Erfahrung.</h2>
-          <p>Ein Team aus Disziplin, Stil und Leidenschaft, das jeden Abend mit Ruhe und Präzision gestaltet.</p>
+          <h2>Drei Tageszeiten, ein Ort.</h2>
+          <p>The Noir begleitet dich vom ersten Kaffee bis zum letzten Cocktail – mit Ruhe und Herzlichkeit.</p>
         </div>
         <div class="review-grid">
           <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <h3>Elena Voss</h3>
-            <p>Restaurant Director – Für jeden Gast wird ein individueller Rhythmus geschaffen.</p>
+            <h3>Frühstück</h3>
+            <p>Türkisches Frühstück, Avocado-Toast und frisch gebrühter Tee für einen guten Start.</p>
           </div>
           <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <h3>Julian Berg</h3>
-            <p>Sommelier – Wein, Service und Timing sind immer aufeinander abgestimmt.</p>
+            <h3>Lunch</h3>
+            <p>Business Lunch und Sommer-Bowls, frisch gekocht in 10–15 Minuten.</p>
           </div>
           <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <h3>Mina Sol</h3>
-            <p>Chef de Pass – Jeder Bissen trägt die Konsequenz einer langen, sorgfältigen Tradition.</p>
+            <h3>Dinner & Drinks</h3>
+            <p>Signature Cocktails und entspannte Abende in warmer, dunkler Atmosphäre.</p>
           </div>
         </div>
       </section>
 
       <section data-reveal>
         <div class="section-heading">
-          <h2>Gäste, Auszeichnungen und stille Anerkennung.</h2>
+          <h2>Was uns wichtig ist.</h2>
           <p>Das Haus ist in kurzer Zeit zu einem Ort geworden, den Menschen nicht nur besuchen, sondern empfehlen.</p>
         </div>
         <div class="awards-grid">
-          <div class="award-card"><strong>Michelin Guide</strong><span>Empfohlen</span></div>
-          <div class="award-card"><strong>Gault&Millau</strong><span>16/20</span></div>
-          <div class="award-card"><strong>CSS Design</strong><span>Ehrenvolle Erwähnung</span></div>
-          <div class="award-card"><strong>Forbes</strong><span>Beste neue Tafel</span></div>
+          <div class="award-card"><strong>Frisch</strong><span>Täglich hausgemacht</span></div>
+          <div class="award-card"><strong>Fusion</strong><span>Asian & Turkish</span></div>
+          <div class="award-card"><strong>@thenoirberlin</strong><span>Instagram Community</span></div>
+          <div class="award-card"><strong>Berlin-Wedding</strong><span>Lokaler Treffpunkt</span></div>
         </div>
       </section>
 
@@ -1072,15 +1168,19 @@
             <div class="panel-content">
               <div class="eyebrow">Besuchen Sie uns</div>
               <h3>The Noir • Berlin</h3>
-              <p>Am Waldemarstraße 14, 10178 Berlin<br />Telefon: +49 30 555 49 14<br />E-Mail: reservations@thenoir.berlin</p>
+              <p>Müllerstraße 147, 13353 Berlin<br />Kontakt &amp; Reservierung: Instagram @thenoirberlin</p>
               <div class="cards" style="margin-top: 1rem;">
                 <div class="card">
                   <h3>Öffnungszeiten</h3>
-                  <p>Di–Sa · 18:00 bis 00:30<br />Sonntag · geschlossen</p>
+                  <p>Mo–Do · 09:00 bis 22:00<br />Fr–So · 09:00 bis 23:00</p>
                 </div>
                 <div class="card">
                   <h3>Folgen Sie uns</h3>
-                  <p><a href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer">Instagram</a><br /><a href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer">TikTok</a><br /><a href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a></p>
+                  <p style="display: grid; gap: 0.5rem;">
+                    <a class="social-inline" href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig-grad-social" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDC80"/><stop offset="25%" stop-color="#FCAF45"/><stop offset="50%" stop-color="#F56040"/><stop offset="75%" stop-color="#C13584"/><stop offset="100%" stop-color="#5851DB"/></linearGradient></defs><path fill="url(#ig-grad-social)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 1.837c-3.145 0-3.508.012-4.744.068-2.667.122-3.912 1.387-4.034 4.034-.056 1.235-.067 1.598-.067 4.744 0 3.146.012 3.51.067 4.745.122 2.645 1.365 3.912 4.034 4.034 1.236.056 1.599.068 4.744.068 3.146 0 3.51-.012 4.745-.068 2.664-.122 3.912-1.393 4.034-4.034.056-1.235.068-1.599.068-4.745 0-3.146-.012-3.509-.068-4.744-.122-2.65-1.372-3.912-4.034-4.034-1.236-.056-1.599-.068-4.745-.068zm0 5.393a4.607 4.607 0 1 1 0 9.214 4.607 4.607 0 0 1 0-9.214zm0 1.837a2.77 2.77 0 1 0 0 5.54 2.77 2.77 0 0 0 0-5.54zm4.807-3.31a1.077 1.077 0 1 1 0 2.155 1.077 1.077 0 0 1 0-2.155z"/></svg>Instagram</a>
+                    <a class="social-inline" href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25F4EE" transform="translate(-0.9,0.45)" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/><path fill="#FE2C55" transform="translate(0.9,-0.45)" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/><path fill="#010101" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/></svg>TikTok</a>
+                    <a class="social-inline" href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -1095,16 +1195,16 @@
         </div>
         <div class="faq-list">
           <details class="faq-item">
-            <summary>Gibt es ein Dresscode?</summary>
-            <p>Wir begrüßen elegante Abendgarderobe. Jackett oder Cocktailkleidung sind willkommen.</p>
+            <summary>Gibt es vegane oder vegetarische Optionen?</summary>
+            <p>Ja, zum Beispiel Pho Chay (vegan) sowie mehrere Salat-Bowls, die sich mit Tofu statt Fleisch bestellen lassen.</p>
           </details>
           <details class="faq-item">
-            <summary>Kann ich die Speisekarte anpassen?</summary>
-            <p>Ja, wir berücksichtigen Allergien, besondere Wünsche und individuelle Präferenzen bei der Planung Ihres Menüs.</p>
+            <summary>Wann läuft der Business Lunch?</summary>
+            <p>Montag bis Freitag von 11:30 bis 15:00 Uhr, mit Hauptgericht und Getränk ab 9,99 €.</p>
           </details>
           <details class="faq-item">
-            <summary>Gibt es eine private Dining-Option?</summary>
-            <p>Ja, unsere privaten Räume sind auf Anfrage buchbar und werden individuell für Dinner, Events und Anlässe gestaltet.</p>
+            <summary>Kann ich einen Tisch reservieren?</summary>
+            <p>Ja, nutze das Formular unten oder schreib uns direkt auf Instagram @thenoirberlin.</p>
           </details>
         </div>
       </section>
@@ -1114,16 +1214,20 @@
           <div class="panel">
             <div class="panel-content">
               <div class="eyebrow">Kontakt</div>
-              <h3>Ein Abend, der sich lohnt.</h3>
-              <p>Für Reservierungen, private Dinner oder Anfragen an das Team schreiben Sie uns gern direkt.</p>
+              <h3>Wir freuen uns auf dich.</h3>
+              <p>Für Fragen, Reservierungen oder Feedback erreichst du uns am schnellsten über Instagram.</p>
               <div class="cards" style="margin-top: 1rem;">
                 <div class="card">
-                  <h3>Reservierungsbüro</h3>
-                  <p>reservations@thenoir.berlin<br />+49 30 555 49 14</p>
+                  <h3>Adresse</h3>
+                  <p>Müllerstraße 147<br />13353 Berlin</p>
                 </div>
                 <div class="card">
                   <h3>Social & Presse</h3>
-                  <p><a href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer">Instagram</a><br /><a href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer">TikTok</a><br /><a href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a></p>
+                  <p style="display: grid; gap: 0.5rem;">
+                    <a class="social-inline" href="https://www.instagram.com/thenoirberlin/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig-grad-social" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDC80"/><stop offset="25%" stop-color="#FCAF45"/><stop offset="50%" stop-color="#F56040"/><stop offset="75%" stop-color="#C13584"/><stop offset="100%" stop-color="#5851DB"/></linearGradient></defs><path fill="url(#ig-grad-social)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 1.837c-3.145 0-3.508.012-4.744.068-2.667.122-3.912 1.387-4.034 4.034-.056 1.235-.067 1.598-.067 4.744 0 3.146.012 3.51.067 4.745.122 2.645 1.365 3.912 4.034 4.034 1.236.056 1.599.068 4.744.068 3.146 0 3.51-.012 4.745-.068 2.664-.122 3.912-1.393 4.034-4.034.056-1.235.068-1.599.068-4.745 0-3.146-.012-3.509-.068-4.744-.122-2.65-1.372-3.912-4.034-4.034-1.236-.056-1.599-.068-4.745-.068zm0 5.393a4.607 4.607 0 1 1 0 9.214 4.607 4.607 0 0 1 0-9.214zm0 1.837a2.77 2.77 0 1 0 0 5.54 2.77 2.77 0 0 0 0-5.54zm4.807-3.31a1.077 1.077 0 1 1 0 2.155 1.077 1.077 0 0 1 0-2.155z"/></svg>Instagram</a>
+                    <a class="social-inline" href="https://www.tiktok.com/@the.noirberlin?_r=1&_t=ZG-97DraR4EeEj" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25F4EE" transform="translate(-0.9,0.45)" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/><path fill="#FE2C55" transform="translate(0.9,-0.45)" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/><path fill="#010101" d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.58h-3.14v14.2c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1 0-5.6c.26 0 .5.03.74.1V10.7a6.02 6.02 0 0 0-.74-.05A5.94 5.94 0 0 0 3.32 16.6 5.94 5.94 0 0 0 9.26 22.5a5.94 5.94 0 0 0 5.94-5.94V9.7a8.15 8.15 0 0 0 4.76 1.53V8.1a4.85 4.85 0 0 1-3.36-2.28z"/></svg>TikTok</a>
+                    <a class="social-inline" href="https://weddingweiser.de/the-noir-die-neue-perle-am-leopoldplatz/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnqdCkbwOvvzW58jEAqK02NxBobgifz9FqN1XRE1mdlcIInjvS2nwVOqnBppc_aem_NNGs3INZlaSpHpupTIElew&utm_id=97760_v0_s00_e0_tv3" target="_blank" rel="noopener noreferrer">Weddingweiser</a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -1136,7 +1240,7 @@
     </main>
 
     <footer>
-      <p>© 2026 The Noir • Berlin • Gourmetküche • Geformt für jene, die stille Exzellenz erkennen.</p>
+      <p>© 2026 The Noir • Café · Restaurant · Bar • Berlin-Wedding</p>
     </footer>
 
     <script>
